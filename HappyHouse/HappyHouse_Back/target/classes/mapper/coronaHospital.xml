@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.webex.model.repo.CoronaHospitalRepository">
+	
+	<select id="searchAll" parameterType="map" resultType="CoronaHospitalDto">
+		select update_date,city,gugun,hospital_name,address,type,phone_number
+		from coronahospital
+		limit #{start}, #{spp}
+	</select>
+	
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(update_date)
+		from coronahospital
+		<if test="word != null and word != ''">
+			<if test="key == 'subject'">
+				where subject like concat('%', #{word}, '%')
+			</if>
+			<if test="key != 'subject'">
+				where #{key} = #{word}
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectAll" parameterType="Integer" resultType="CoronaHospitalDto">
+		select * from coronahospital order by hospital_name limit #{startNum}, #{count}
+	</select>
+	
+	<select id="getCount" resultType="Integer">
+		select ceil(count(*)/10) from coronahospital;
+	</select>
+</mapper>

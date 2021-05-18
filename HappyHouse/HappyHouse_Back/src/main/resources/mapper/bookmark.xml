@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.webex.model.repo.BookmarkRepository">
+	
+	
+	<select id="select" parameterType="BookmarkDto" resultType="BookmarkDto">
+		select * from bookmark where user_id like #{user_id} and dongName like #{dongName} order by buildingno
+	</select>
+	
+	<select id="selectNo" parameterType="BookmarkDto" resultType="Integer">
+	select no from bookmark
+	where user_id like #{user_id} and dongName like #{dongName} and buildingno =#{buildingno} and buildingName like #{buildingName}
+	</select>
+	
+	<insert id="insert" parameterType="BookmarkDto">
+		insert into bookmark(user_id ,dongName ,buildingno,buildingName) values (#{user_id} ,#{dongName} ,#{buildingno},#{buildingName})
+	</insert>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from bookmark 
+		where no = #{no}
+	</delete>
+</mapper>

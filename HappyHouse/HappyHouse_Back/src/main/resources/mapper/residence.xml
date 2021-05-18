@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.webex.model.repo.ResidenceDealRepository">
+	
+	<select id="searchBuy" parameterType="map" resultType="ResidenceBuyDto">
+		select no,city,gugun,dong,bungi,bonbun,bubun,buildingName,area,daejiarea,substr(dealyearmonth, 1, 4) dealYear,substr(dealyearmonth, 5, 6) dealMonth,dealDay,dealAmount,floor,buildYear,roadname
+		from residencebuy
+		order by no asc
+		limit #{start}, #{spp}
+	</select>
+	
+	<select id="searchBuyName" parameterType="map" resultType="ResidenceBuyDto">
+		select no,city,gugun,dong,bungi,bonbun,bubun,buildingName,area,daejiarea,substr(dealyearmonth, 1, 4) dealYear,substr(dealyearmonth, 5, 6) dealMonth,dealDay,dealAmount,floor,buildYear,roadname
+		from residencebuy
+		where buildingName like #{resName}
+		order by no asc
+		limit #{start}, #{spp}
+	</select>
+	
+	<select id="searchBuyDongName" parameterType="map" resultType="ResidenceBuyDto">
+		select no,city,gugun,dong,bungi,bonbun,bubun,buildingName,area,daejiarea,substr(dealyearmonth, 1, 4) dealYear,substr(dealyearmonth, 5, 6) dealMonth,dealDay,dealAmount,floor,buildYear,roadname
+		from residencebuy
+		where dong like #{dongName}
+		order by no asc
+		limit #{start}, #{spp}
+	</select>
+	
+	<select id="searchRent" parameterType="map" resultType="ResidenceRentDto">
+		select no,city,gugun,dong,bunji,bonbun,bubun,buildingname,type,area,substr(contract_year_month, 1, 4) contractYear, substr(contract_year_month, 5, 6) contractMonth, contract_day contractDay,bondfee,rentmoney,floor,buildyear,address
+		from residencerent
+		order by no asc
+		limit #{start}, #{spp}
+	</select>
+	
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(no)
+		from residencebuy
+		<if test="word != null and word != ''">
+			<if test="key == 'subject'">
+				where subject like concat('%', #{word}, '%')
+			</if>
+			<if test="key != 'subject'">
+				where #{key} = #{word}
+			</if>
+		</if>
+	</select>
+	
+	<select id="getTotalCountRent" parameterType="map" resultType="int">
+		select count(no)
+		from residencerent
+		<if test="word != null and word != ''">
+			<if test="key == 'subject'">
+				where subject like concat('%', #{word}, '%')
+			</if>
+			<if test="key != 'subject'">
+				where #{key} = #{word}
+			</if>
+		</if>
+	</select>
+	
+	<select id="getResidenceInDong" parameterType="String" resultType="ResidenceRentDto">
+		select * from residencerent WHERE dong like #{dong} ORDER BY buildingName
+	</select>
+	
+	<select id="getResidenceDealName" parameterType="String" resultType="ResidenceBuyDto">
+		select * from residencebuy WHERE buildingName like #{buildingName} ORDER BY buildingName
+	</select>
+</mapper>

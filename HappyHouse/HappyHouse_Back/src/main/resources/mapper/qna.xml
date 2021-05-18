@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.webex.model.repo.QnARepository">
+	
+	<select id="list" parameterType="map" resultType="QnADto">
+		select no, id, title, content, regtime
+		from qna
+		order by no desc
+		limit #{start}, #{spp}
+	</select>
+	
+	<select id="show" parameterType="int" resultType="QnADto">
+		select no, id, title, content, regtime
+		from qna
+		where no = #{no}
+	</select>
+
+	<insert id="write" parameterType="QnADto">
+		insert into qna (id, title, content, regtime)
+		values (#{id}, #{title}, #{content}, now())
+	</insert>
+	
+	<update id="modifyInfo" parameterType="QnADto">
+		update qna
+		set title = #{title}, content = #{content}, regtime = now()
+		where no = #{no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from qna
+		where no = #{no}
+	</delete>
+	
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(no)
+		from qna
+		<if test="word != null and word != ''">
+			<if test="key == 'subject'">
+				where subject like concat('%', #{word}, '%')
+			</if>
+			<if test="key != 'subject'">
+				where #{key} = #{word}
+			</if>
+		</if>
+	</select>
+</mapper>
