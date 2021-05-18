@@ -24,7 +24,7 @@
 ## 이메일 인증 번호
 ![image](https://user-images.githubusercontent.com/74764862/118620143-32662d80-b800-11eb-9b88-0a7daba55cb0.png)
 
-
+## 
 - 파싱을 통해 검색 데이터를 불러오기
 - Web(HTML, CSS)을 이용하여 결과 시각화
 - 구글맵 OpenAPI
