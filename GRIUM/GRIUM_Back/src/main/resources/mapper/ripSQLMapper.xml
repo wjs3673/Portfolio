@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ssafy.rip">
+
+	<select id="checkrip" parameterType="RipDTO" resultType="int">
+		select
+		TYPE
+		from RIP_TB
+		where BOARD_ID=#{board_id} and USER_ID=#{user_id}
+	</select>
+
+	<insert id="pressrip" parameterType="RipDTO">
+		insert into RIP_TB(BOARD_ID, USER_ID, TYPE)
+		values(#{board_id}, #{user_id}, 1)
+	</insert>
+
+	<update id="updaterip" parameterType="RipDTO">
+		update RIP_TB
+		set TYPE=1
+		where BOARD_ID=#{board_id} and USER_ID=#{user_id}
+	</update>
+
+	<update id="cancle" parameterType="RipDTO">
+		update RIP_TB
+		set TYPE=0
+		where BOARD_ID=#{board_id} and USER_ID=#{user_id}
+	</update>
+
+	<update id="plusCount" parameterType="RipDTO">
+		update BOARD_TB
+		set COUNT=COUNT+1
+		where BOARD_ID=#{board_id}
+	</update>
+
+	<update id="setCount" parameterType="RipDTO">
+		update BOARD_TB
+		set COUNT=COUNT-1
+		where BOARD_ID=#{board_id}
+	</update>
+
+<!-- KY -->
+	
+	<select id="photorip" parameterType="RipDTO" resultType="int">
+		select
+		TYPE
+		from RIP_TB
+		where PHOTO_ID=#{photo_id} and USER_ID=#{user_id}
+	</select>
+
+	<insert id="photopressrip" parameterType="RipDTO">
+		insert into RIP_TB(PHOTO_ID, USER_ID, TYPE)
+		values(#{photo_id}, #{user_id}, 1)
+	</insert>
+
+	<update id="photoupdaterip" parameterType="RipDTO">
+		update RIP_TB
+		set TYPE=1
+		where PHOTO_ID=#{photo_id} and USER_ID=#{user_id}
+	</update>
+
+	<update id="photocancle" parameterType="RipDTO">
+		update RIP_TB
+		set TYPE=0
+		where PHOTO_ID=#{photo_id} and USER_ID=#{user_id}
+	</update>
+
+	<update id="photoplusCount" parameterType="RipDTO">
+		update PHOTO_TB
+		set COUNT=COUNT+1
+		where PHOTO_ID=#{photo_id}
+	</update>
+
+	<update id="photosetCount" parameterType="RipDTO">
+		update PHOTO_TB
+		set COUNT=COUNT-1
+		where PHOTO_ID=#{photo_id}
+	</update>
+
+	<!-- RipType -->
+	<update id="RipOne" parameterType="map">
+		update PHOTO_TB set RIPTYPE =1 where PHOTO_ID=#{photo_id} and USER_ID=#{user_id}
+	</update>
+	
+	<update id="RipZero" parameterType="map">
+		update PHOTO_TB set RIPTYPE =0 where PHOTO_ID=#{photo_id} and USER_ID=#{user_id}
+	</update>
+</mapper>

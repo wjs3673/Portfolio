@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ssafy.board">
+
+	<insert id="insert" parameterType="BoardDTO">
+		insert into BOARD_TB(GONE_ID, USER_ID, TITLE, WRITER, CONTENT, BOARD_DT, COUNT, SECRET, FLAG)
+		values(#{gone_id}, #{user_id}, #{title}, #{writer}, #{content},
+		now(), 0, #{secret}, 0)
+	</insert>
+
+	<select id="checkchild" parameterType="map" resultType="GoneDTO">
+		select *
+		from GONE_TB where GONE_ID=#{gone_id} and USER_ID=#{user_id}
+	</select>
+
+	<select id="listall" parameterType="Pagination"
+        resultType="BoardDTO">
+        select *
+        from BOARD_TB
+        <if test="isOwner == 0">
+            where SECRET=0 and FLAG=0 and GONE_ID=#{gone_id}
+        </if>
+        <if test="isOwner == 1">
+            where FLAG=0 and GONE_ID=#{gone_id}
+        </if>
+        limit #{startList}, #{listSize}
+    </select>
+
+	<select id="getCnt" parameterType="map" resultType="int">
+        select count(*) as listCnt
+        from BOARD_TB
+        <if test="isOwner == 0">
+            where SECRET=0 and FLAG=0 and GONE_ID=#{gone_id}
+        </if>
+        <if test="isOwner == 1">
+            where FLAG=0 and GONE_ID=#{gone_id}
+        </if>
+    </select>
+	
+	<select id="callboard" parameterType="int" resultType="BoardDTO">
+		select *
+		from BOARD_TB where BOARD_ID=#{board_id}
+	</select>
+	
+	<update id="upBoard" parameterType="BoardDTO">
+		update BOARD_TB
+		set TITLE=#{title}, CONTENT=#{content}, BOARD_DT=now(), SECRET=#{secret}
+		where BOARD_ID=#{board_id}
+	</update>
+	
+	<update id="delBoard" parameterType="BoardDTO">
+		update BOARD_TB
+		set FLAG=1
+		where BOARD_ID=#{board_id}
+	</update>
+	
+	<select id="checkAuth" parameterType="map" resultType="int">
+		select count(*) as listCnt
+		from BOARD_TB
+		where BOARD_ID=#{board_id} and USER_ID=#{user_id}
+	</select>
+
+</mapper>

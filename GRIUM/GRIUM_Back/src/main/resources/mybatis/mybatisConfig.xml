@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+
+<configuration>
+    <typeAliases>
+        <typeAlias type="com.project.four.model.dto.UserDto" alias="UserDTO" />
+        <typeAlias type="com.project.four.model.dto.BoardDto" alias="BoardDTO" />
+        <typeAlias type="com.project.four.model.dto.GoneDto" alias="GoneDTO" />
+        <typeAlias type="com.project.four.util.Pagination" alias="Pagination" />
+        <typeAlias type="com.project.four.model.dto.AlertDto" alias="AlertDTO" />
+        <typeAlias type="com.project.four.model.dto.RipDto" alias="RipDTO" />
+        <typeAlias type="com.project.four.model.dto.ChatDto" alias="ChatDTO" />
+        <typeAlias type="com.project.four.model.dto.FamilyDto" alias="FamilyDTO" />
+        <typeAlias type="com.project.four.model.dto.CondolanceDto" alias="CondolanceDTO" />
+        <typeAlias type="com.project.four.model.dto.ProcedureDto" alias="ProcedureDTO" />
+        <typeAlias type="com.project.four.model.dto.FuneralDto" alias="FuneralDTO" />
+        <typeAlias type="com.project.four.model.dto.FuneralListDto" alias="FuneralListDTO" />
+        <typeAlias type="com.project.four.model.dto.GalleryDto" alias="GalleryDTO" />
+        <typeAlias type="com.project.four.model.dto.GaddressDto" alias="GaddressDTO"/>
+    </typeAliases>
+    
+	<!-- 이곳에 주거나 application.xml에 둘중 하나만 주면 된다. -->
+  <mappers>
+    <mapper resource="mapper/userSQLMapper.xml" />
+    <mapper resource="mapper/boardSQLMapper.xml" />
+    <mapper resource="mapper/ripSQLMapper.xml" />
+    <mapper resource="mapper/alertSQLMapper.xml" />
+    <mapper resource="mapper/goneSQLMapper.xml" />
+    <mapper resource="mapper/chatSQLMapper.xml" />
+    <mapper resource="mapper/applicationSQLMapper.xml" />
+    <mapper resource="mapper/gallerySQLMapper.xml" />
+  </mappers>
+
+</configuration>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ssafy.alert">
+	
+	<select id="checkalert" parameterType="AlertDTO" resultType="int">
+		select
+		TYPE
+		from ALERT_TB
+		where BOARD_ID=#{board_id} and USER_ID=#{user_id}
+	</select>
+	
+	<insert id="pressalert" parameterType="AlertDTO">
+		insert into ALERT_TB(BOARD_ID, USER_ID, GONE_ID, ALERT_DT, READ_CHECK, TYPE)
+		values(#{board_id}, #{user_id}, #{gone_id}, now(), 0, 1)
+	</insert>
+	
+	<update id="upalert" parameterType="AlertDTO">
+		update ALERT_TB
+		set TYPE=1
+		where BOARD_ID=#{board_id} and USER_ID=#{user_id}
+	</update>
+	
+	<update id="canalert" parameterType="AlertDTO">
+		update ALERT_TB
+		set TYPE=0
+		where BOARD_ID=#{board_id} and USER_ID=#{user_id}
+	</update>
+	
+	<select id="checktype" parameterType="map" resultType="int">
+		select
+		TYPE
+		from RIP_TB
+		where BOARD_ID=#{board_id} and USER_ID=#{user_id}
+	</select>
+	
+	<select id="checkatype" parameterType="map" resultType="int">
+		select
+		TYPE
+		from ALERT_TB
+		where BOARD_ID=#{board_id} and USER_ID=#{user_id}
+	</select>
+	
+	<select id="getalarm" parameterType="String" resultType="AlertDTO">
+		select *
+		from ALERT_TB
+		where GONE_ID=#{gone_id} and READ_CHECK=0 and TYPE=1
+	</select>
+	
+	<select id="getgone" parameterType="String" resultType="String">
+		select GONE_ID
+		from GONE_TB
+		where USER_ID=#{user_id}
+	</select>
+	
+	<select id="getabaord" parameterType="int" resultType="BoardDTO">
+		select *
+		from BOARD_TB
+		where BOARD_ID=#{board_id}
+	</select>
+	
+	<select id="getagallary" parameterType="int" resultType="GalleryDTO">
+		select *
+		from PHOTO_TB
+		where PHOTO_ID=#{photo_id}
+	</select>
+	
+	<select id="getgglist" parameterType="int" resultType="GaddressDTO">
+		select *
+		from GADDRESS_TB
+		where PHOTO_ID=#{photo_id}
+	</select>
+	
+	<select id="getname" parameterType="String" resultType="String">
+		select NAME
+		from USER_TB
+		where USER_ID=#{user_id}
+	</select>
+	
+	<select id="PCheckalert" parameterType="AlertDTO" resultType="int">
+		select
+		TYPE
+		from ALERT_TB
+		where PHOTO_ID=#{photo_id} and USER_ID=#{user_id}
+	</select>
+	
+	<insert id="PPressalert" parameterType="AlertDTO">
+		insert into ALERT_TB(PHOTO_ID, USER_ID, GONE_ID, ALERT_DT, READ_CHECK, TYPE)
+		values(#{photo_id}, #{user_id}, #{gone_id}, now(), 0, 1)
+	</insert> 	
+	
+	<update id="PUpalert" parameterType="AlertDTO">
+		update ALERT_TB
+		set TYPE=1
+		where PHOTO_ID=#{photo_id} and USER_ID=#{user_id}
+	</update>
+	
+	<update id="PCanalert" parameterType="AlertDTO">
+		update ALERT_TB
+		set TYPE=0
+		where PHOTO_ID=#{photo_id} and USER_ID=#{user_id}
+	</update>
+	
+	<!-- AlertType -->
+	<update id="AlterZero" parameterType="map">
+		update PHOTO_TB set ALERTTYPE = 0 where PHOTO_ID=#{photo_id} and GONE_ID=#{gone_id}
+	</update>
+	
+	<update id="AlterOne" parameterType="map">
+		update PHOTO_TB set ALERTTYPE =1 where PHOTO_ID=#{photo_id} and GONE_ID=#{gone_id}
+	</update>
+</mapper>

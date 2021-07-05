@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ssafy.gone">
+
+	<select id="getList" resultType="GoneDTO">
+		select * from GONE_TB order by DEATH_DT desc
+	</select>
+
+	<select id="callGone" parameterType="String"
+		resultType="GoneDTO">
+		select *
+		from GONE_TB where GONE_ID=#{gone_id}
+	</select>
+
+	<select id="callProcedure" parameterType="String"
+		resultType="ProcedureDTO">
+		select *
+		from PROCEDURE_TB where GONE_ID=#{gone_id}
+	</select>
+
+	<select id="callCondolance" parameterType="String"
+		resultType="CondolanceDTO">
+		select *
+		from CONDOLANCE_TB where GONE_ID=#{gone_id}
+	</select>
+
+	<select id="callFuneral" parameterType="String"
+		resultType="FuneralDTO">
+		select *
+		from FUNERAL_TB where GONE_ID=#{gone_id}
+	</select>
+
+	<select id="callUser" parameterType="String"
+		resultType="UserDTO">
+		select *
+		from USER_TB where USER_ID=#{user_id}
+	</select>
+
+</mapper>

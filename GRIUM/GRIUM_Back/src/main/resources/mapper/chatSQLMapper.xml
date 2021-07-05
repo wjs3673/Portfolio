@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ssafy.chat">
+
+	<insert id="insert" parameterType="ChatDTO">
+		insert into CHAT_TB(
+		GONE_ID,
+		WRITER, CONTENT, CHAT_DT, FLOWER, FLAG)
+		values(
+		#{gone_id},
+		#{writer},
+		#{content}, now(),
+		#{flower}, 0)
+	</insert>
+	
+	<select id="getList" resultType="ChatDTO">
+        select *
+        from CHAT_TB
+        where
+        GONE_ID=#{gone_id} and FLAG=0
+        order by CHAT_ID desc
+        limit 13
+    </select>
+    
+	<update id="delete" parameterType="ChatDTO">
+		update CHAT_TB
+		set FLAG=1
+		where
+		CHAT_ID=#{chat_id}
+	</update>
+
+	<insert id="alert" parameterType="AlertDTO">
+		insert into ALERT_TB(
+		CHAT_ID,
+		USER_ID,
+		ALERT_DT, READ_CHECK, TYPE)
+		values(
+		#{chat_id}, #{user_id},
+		now(), 0, 1)
+	</insert>
+
+	<select id="checkUserid" parameterType="String"
+		resultType="AlertDTO">
+		select *
+		from
+		ALERT_TB
+		where
+		USER_ID=#{user_id}
+	</select>
+
+	<update id="alertCancel" parameterType="AlertDTO">
+		update ALERT_TB
+		set TYPE=0
+		where
+		ALERT_ID=#{alert_id} and CHAT_ID=#{chat_id}
+	</update>
+	
+	<update id="reAlert" parameterType="AlertDTO">
+		update ALERT_TB
+		set TYPE=1
+		where
+		ALERT_ID=#{alert_id} and CHAT_ID=#{chat_id}
+	</update>
+
+</mapper>

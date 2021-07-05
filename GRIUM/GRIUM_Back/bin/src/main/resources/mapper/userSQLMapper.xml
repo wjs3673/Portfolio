@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ssafy.user">
+
+	<select id="login" parameterType="map" resultType="UserDTO">
+		select EMAIL, NAME, PASSWORD, PHONE
+		from USER_TB
+		where EMAIL=#{email} and PASSWORD=#{password}
+	</select>
+
+	<update id="update" parameterType="map">
+		update USER_TB
+		set NAME=#{name}, PASSWORD=#{password}, PHONE=#{phone}
+		where EMAIL=#{email}
+	</update>
+
+	<insert id="insert" parameterType="UserDTO">
+		insert into USER_TB(USER_ID, EMAIL, NAME, PASSWORD, PHONE)
+		values(#{user_id}, #{email}, #{name}, #{password}, #{phone})
+	</insert>
+
+	<select id="checkout" parameterType="String"
+		resultType="UserDTO">
+		select EMAIL
+		from GETOUT_TB
+		where EMAIL=#{passemail}
+	</select>
+
+	<insert id="withdraw" parameterType="UserDTO">
+		insert into GETOUT_TB(USER_ID, EMAIL, NAME, PASSWORD, PHONE)
+		select USER_ID, EMAIL, NAME, PASSWORD, PHONE
+		from USER_TB
+		where EMAIL=#{email}
+	</insert>
+
+	<select id="overid" parameterType="String" resultType="UserDTO">
+		select * from USER_TB where USER_ID=#{user_id}
+	</select>
+
+	<select id="overemail" parameterType="String"
+		resultType="UserDTO">
+		select * from USER_TB where EMAIL=#{email}
+	</select>
+
+	<select id="findpw" parameterType="String" resultType="UserDTO">
+		select PASSWORD
+		from USER_TB
+		where EMAIL=#{email} and NAME=#{name}
+	</select>
+
+	<select id="existGet" parameterType="String" resultType="UserDTO">
+		select * from GETOUT_TB where EMAIL=#{email}
+	</select>
+	
+	<update id="newPassword" parameterType="map">
+		update USER_TB set PASSWORD=#{password} where EMAIL=#{email}	
+	</update>
+ 
+</mapper>

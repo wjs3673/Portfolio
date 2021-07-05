@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ssafy.gallery">
+
+	<insert id="insert" parameterType="GalleryDTO">
+		insert into PHOTO_TB(GONE_ID, USER_ID, EMAIL, WRITER, COUNT, SECRET,
+		FLAG)
+		values(#{gone_id}, #{user_id},#{email}, #{writer}, #{count},
+		#{secret},#{flag})
+		<selectKey resultType="int" keyProperty="photo_id"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<insert id="fileregist" parameterType="GalleryDTO">
+		insert into GADDRESS_TB(PHOTO_ID, SERVER_PHOTO, SERVER_PATH,
+		ORIGIN_PHOTO)
+		values
+		<foreach collection="gaddress" item="item" separator=" , ">
+			(#{photo_id}, #{item.server_photo}, #{item.server_path},
+			#{item.origin_photo})
+		</foreach>
+	</insert>
+
+	<select id="findid" parameterType="String" resultType="String">
+		select
+		USER_ID from USER_TB where EMAIL=#{email}
+	</select>
+
+	<select id="findgone" parameterType="map" resultType="GoneDTO">
+		select *
+		from GONE_TB where GONE_ID=#{gone_id} and USER_ID=#{user_id}
+	</select>
+
+	<select id="getCnt" parameterType="int" resultType="int">
+        select count(*) as listCnt from PHOTO_TB
+        <if test="isOwner == 0">
+            where SECRET=0 and FLAG=0 and GONE_ID=#{gone_id}
+        </if>
+        <if test="isOwner == 1">
+            where FLAG=0 and GONE_ID=#{gone_id}
+        </if>
+    </select>
+
+	<!-- here we go -->
+
+	<resultMap type="GalleryDTO" id="galleryList">
+		<result property="photo_id" column="PHOTO_ID" />
+		<result property="gone_id" column="GONE_ID" />
+		<result property="user_id" column="USER_ID" />
+		<result property="email" column="EMAIL" />
+		<result property="writer" column="WRITER" />
+		<result property="photo_dt" column="PHOTO_DT" />
+		<result property="count" column="COUNT" />
+		<result property="secret" column="SECRET" />
+		<result property="flag" column="FLAG" />
+		<collection property="gaddress" column="photo_id"
+			javaType="list" ofType="GaddressDTO" select="fileInfoList" />
+	</resultMap>
+
+	<select id="allList" parameterType="Pagination"
+        resultMap="galleryList">
+        select * from PHOTO_TB
+        <if test="isOwner == 0">
+            where SECRET=0 and FLAG=0 and GONE_ID=#{gone_id}
+        </if>
+        <if test="isOwner == 1">
+            where FLAG=0 and GONE_ID=#{gone_id}
+        </if>
+        order by PHOTO_ID desc
+        limit #{startList}, #{listSize}
+    </select>
+
+	<select id="fileInfoList" resultType="GaddressDTO">
+		select SERVER_PHOTO,
+		SERVER_PATH, ORIGIN_PHOTO from GADDRESS_TB
+		where PHOTO_ID = #{photo_id}
+	</select>
+
+	<select id="IdList" parameterType="int" resultType="GaddressDTO">
+		select * from
+		GADDRESS_TB where PHOTO_ID=#{photo_id}
+	</select>
+
+	<update id="delupdate" parameterType="int">
+		update PHOTO_TB set FLAG=1
+		where PHOTO_ID=#{photo_id}
+	</update>
+
+	<select id="ListOne" parameterType="int" resultType="GalleryDTO">
+		select *
+		from PHOTO_TB where photo_id=#{photo_id}
+	</select>
+
+	<select id="callGallery" parameterType="String"
+		resultMap="galleryList">
+		select * from PHOTO_TB where GONE_ID=#{gone_id} order by PHOTO_ID desc limit
+		6;
+	</select>
+
+	<select id="AreUAuth" parameterType="map" resultType="int">
+		select count(*) from GONE_TB where GONE_ID=#{gone_id} and USER_ID=#{user_id}
+	</select>
+
+</mapper>
