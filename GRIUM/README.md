@@ -18,7 +18,7 @@
 - Jira
 
 ## 메인페이지
-![image](https://user-images.githubusercontent.com/74764862/118619955-034fbc00-b800-11eb-9148-8ecf832775ec.png)
+![image](https://ifh.cc/g/JErFcm.jpg)
 
 ## 검색페이지
 ![image](https://user-images.githubusercontent.com/74764862/118620072-22e6e480-b800-11eb-951a-bdf9865b6e74.png)
