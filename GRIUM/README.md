@@ -23,9 +23,46 @@
 ## 장례 페이지
 ![image](https://ifh.cc/g/u98ofA.jpg)
 
-# 
+## 로그인
+![image](https://ifh.cc/g/uB1C8l.jpg)
+
+## 회원가입(Email인증)
+![image](https://ifh.cc/g/Utn2D2.jpg)
+- 인증번호 발송
+![image](https://ifh.cc/g/2oQMyj.jpg)
+- 인증번호 확인
+
+## 장례식장 신청
+![image](https://ifh.cc/g/xvtUeS.jpg)
+![image](https://ifh.cc/g/YxfUVu.jpg)
+- 장례식장 검색
+![image](https://ifh.cc/g/Lss8jt.jpg)
+- 지정 날짜 이외에 장례식장 페이지 활성화 여부 ON/OFF
+
+## 장례식장 공유 방법
+![image](https://ifh.cc/g/DEvjba.jpg)
+- 온라인 장례식장 주소 생성
+![image](https://ifh.cc/g/tYy6wh.jpg)
+- 조문객에게 링크 전송
+
+## 조문관 페이지
+![image](https://ifh.cc/g/UQTBjY.jpg)
+- 링크를 클릭 시 나오는 페이지
+![image](https://ifh.cc/g/Pt0FCw.jpg)
+- 조문관 내의 사진 게시판
+![image](https://ifh.cc/g/qKThWz.jpg)
+- 조문관 내의 글 게시판
+
+## 게시판(글, 사진 공통)
+![image](https://ifh.cc/g/aurgte.jpg)
+- 신고 등록(조문객)
+![image](https://ifh.cc/g/DOouTq.jpg)
+- 신고 관리(상주, 관리자)
+
+## SNS
+![image](https://ifh.cc/g/jcc7Fl.jpg)
+
 ## 
 - 회원 DB 설계 및 구현
 - 장례식장 페이지 DB 설계 및 구현
-- 장례 신청 시 지정 날짜 이외에 장례 페이지 활성화 여부 ON/OFF
 - 비밀번호 암호화/복호화
