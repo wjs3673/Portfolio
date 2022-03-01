@@ -27,37 +27,37 @@
 ![image](https://ifh.cc/g/uB1C8l.jpg)
 
 ## 회원가입(Email인증)
-![image](https://ifh.cc/g/Utn2D2.jpg)
 - 인증번호 발송
-![image](https://ifh.cc/g/2oQMyj.jpg)
+![image](https://ifh.cc/g/Utn2D2.jpg)
 - 인증번호 확인
+![image](https://ifh.cc/g/2oQMyj.jpg)
 
 ## 장례식장 신청
 ![image](https://ifh.cc/g/xvtUeS.jpg)
-![image](https://ifh.cc/g/YxfUVu.jpg)
 - 장례식장 검색
-![image](https://ifh.cc/g/Lss8jt.jpg)
+![image](https://ifh.cc/g/YxfUVu.jpg)
 - 지정 날짜 이외에 장례식장 페이지 활성화 여부 ON/OFF
+![image](https://ifh.cc/g/Lss8jt.jpg)
 
 ## 장례식장 공유 방법
-![image](https://ifh.cc/g/DEvjba.jpg)
 - 온라인 장례식장 주소 생성
-![image](https://ifh.cc/g/tYy6wh.jpg)
+![image](https://ifh.cc/g/DEvjba.jpg)
 - 조문객에게 링크 전송
+![image](https://ifh.cc/g/tYy6wh.jpg)
 
 ## 조문관 페이지
-![image](https://ifh.cc/g/UQTBjY.jpg)
 - 링크를 클릭 시 나오는 페이지
-![image](https://ifh.cc/g/Pt0FCw.jpg)
+![image](https://ifh.cc/g/UQTBjY.jpg)
 - 조문관 내의 사진 게시판
-![image](https://ifh.cc/g/qKThWz.jpg)
+![image](https://ifh.cc/g/Pt0FCw.jpg)
 - 조문관 내의 글 게시판
+![image](https://ifh.cc/g/qKThWz.jpg)
 
 ## 게시판(글, 사진 공통)
-![image](https://ifh.cc/g/aurgte.jpg)
 - 신고 등록(조문객)
-![image](https://ifh.cc/g/DOouTq.jpg)
+![image](https://ifh.cc/g/aurgte.jpg)
 - 신고 관리(상주, 관리자)
+![image](https://ifh.cc/g/DOouTq.jpg)
 
 ## SNS
 ![image](https://ifh.cc/g/jcc7Fl.jpg)
