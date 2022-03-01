@@ -36,7 +36,7 @@
 ![image](https://ifh.cc/g/xvtUeS.jpg)
 - 장례식장 검색
 ![image](https://ifh.cc/g/YxfUVu.jpg)
-- 지정 날짜 이외에 장례식장 페이지 활성화 여부 ON/OFF
+- 지정 날짜 이외에 조문관 페이지 활성화 여부 ON/OFF
 ![image](https://ifh.cc/g/Lss8jt.jpg)
 
 ## 장례식장 공유 방법
